@@ -1,20 +1,20 @@
-variable "destination_vnet" {
+variable "vnet_peering_destination_vnet" {
   type = string
   description = "ID of the destination VNET"
 }
 
-variable "source_vnet" {
+variable "vnet_peering_source_vnet" {
   type = string
   description = "ID of the source VNET"
 }
 
-variable "peering_name" {
+variable "vnet_peering_name" {
   type = string
   description = "name of the peering"
   default = "peering"
 }
 
-variable "resource_group" {
+variable "vnet_peering_resource_group" {
   type = string
   description = "Resource Group for the peering"
 }
