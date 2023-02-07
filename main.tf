@@ -1,3 +1,13 @@
+
+provider "azurerm" {
+  features {}
+  alias = "vnet_peering"
+  subscription_id = var.subscription_id
+  client_id = var.client_id
+  client_secret = var.client_secret
+  tenant_id = var.tenant_id
+} 
+
 resource "azurerm_virtual_network_peering" "source2dest" {
   count                        = var.dbg_simulate ? 0:1
   name                         = var.vnet_peering_name == "peering" ? "peering-${split("/", var.vnet_peering_source_vnet)[8]}_${split("/", var.vnet_peering_destination_vnet)[8]}" : var.vnet_peering_name
@@ -7,6 +17,7 @@ resource "azurerm_virtual_network_peering" "source2dest" {
   allow_virtual_network_access = var.allow_virtual_network_access
   allow_forwarded_traffic      = var.allow_forwarded_traffic 
   allow_gateway_transit = var.allow_gateway_transit
+  provider = azurerm.vnet_peering
 }
 
 resource "azurerm_virtual_network_peering" "dest2main" {
@@ -18,4 +29,5 @@ resource "azurerm_virtual_network_peering" "dest2main" {
   allow_virtual_network_access = var.allow_virtual_network_access
   allow_forwarded_traffic      = var.allow_forwarded_traffic 
   allow_gateway_transit = var.allow_gateway_transit
+  provider = azurerm.vnet_peering
 }
