@@ -1,19 +1,3 @@
-variable "subscription_id" {
-  type = string
-}
-
-variable "client_id" {
-  type = string
-}
-
-variable "client_secret" {
-  type = string
-}
-
-variable "tenant_id" {
-  type = string
-}
-
 variable "vnet_peering_destination_vnet" {
   type = string
   description = "ID of the destination VNET"
