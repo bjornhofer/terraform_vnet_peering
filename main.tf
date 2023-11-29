@@ -1,13 +1,3 @@
-
-provider "azurerm" {
-  features {}
-  alias = "vnet_peering"
-  subscription_id = var.subscription_id
-  client_id = var.client_id
-  client_secret = var.client_secret
-  tenant_id = var.tenant_id
-} 
-
 resource "azurerm_virtual_network_peering" "source2dest" {
   count                        = var.dbg_simulate ? 0:1
   name                         = var.vnet_peering_name == "peering" ? "peering-${split("/", var.vnet_peering_source_vnet)[8]}_${split("/", var.vnet_peering_destination_vnet)[8]}" : var.vnet_peering_name
